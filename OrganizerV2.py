@@ -3,8 +3,8 @@ from pathlib import Path
   
 DIRECTORIES = { 
     "HTML": [".html5", ".html", ".htm", ".xhtml"], 
-    "IMAGES": [".jpeg", ".jpg", ".tiff", ".gif", ".bmp", ".png", ".bpg", "svg", 
-               ".heif", ".psd"], 
+    "IMAGES": [".jpeg", ".jpg", ".tiff", ".gif", ".bmp", ".png", ".bpg", ".svg", 
+               ".heif", ".psd", ".ico"], 
     "VIDEOS": [".avi", ".flv", ".wmv", ".mov", ".mp4", ".webm", ".vob", ".mng", 
                ".qt", ".mpg", ".mpeg", ".3gp"], 
     "DOCUMENTS": [".oxps", ".epub", ".pages", ".docx", ".doc", ".fdf", ".ods", 
@@ -20,7 +20,8 @@ DIRECTORIES = {
     "PYTHON": [".py"], 
     "XML": [".xml"], 
     "EXE": [".exe"], 
-    "SHELL": [".sh"] 
+    "SHELL": [".sh"],
+    "TORRENTS": [".torrent"]
   
 } 
   
@@ -30,7 +31,7 @@ FILE_FORMATS = {file_format: directory
   
 def organize_junk(): 
     for entry in os.scandir(): 
-        if entry.is_dir(): 
+        if entry.is_dir() or entry.name == os.path.basename(__file__): 
             continue
         file_path = Path(entry) 
         file_format = file_path.suffix.lower() 
